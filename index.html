@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Straw Hat Shelf — an unofficial One Piece fan tribute</title>
+<meta name="description" content="An unofficial fan tribute to the Straw Hat crew: ten volumes, ten dreams, one voyage. Original writing and drawings, spoiler-gentle through Wano.">
+<meta name="theme-color" content="#101826">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23101826'/%3E%3Crect x='5' y='6' width='5' height='22' fill='%23E2362B'/%3E%3Crect x='11' y='4' width='5' height='24' fill='%2329A35A'/%3E%3Crect x='17' y='7' width='5' height='21' fill='%23F28C28'/%3E%3Crect x='23' y='5' width='5' height='23' fill='%23F5D300'/%3E%3C/svg%3E">
+<style>
+@font-face { font-family: "Dela Gothic One"; src: url("fonts/DelaGothicOne-sub.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Zen Kaku Gothic New"; src: url("fonts/ZenKaku-Regular-sub.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Zen Kaku Gothic New"; src: url("fonts/ZenKaku-Bold-sub.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+:root {
+  --night: #101826;
+  --night-2: #172338;
+  --paper: #F6F2E7;
+  --ink: #111111;
+  --thread: #D42E23;
+  --member: #D42E23;
+  --display: "Dela Gothic One", "Hiragino Kaku Gothic Pro", sans-serif;
+  --text: "Zen Kaku Gothic New", "Hiragino Sans", system-ui, sans-serif;
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --border: 3px;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scrollbar-color: var(--member) var(--night); }
+body { margin: 0; background: var(--night); color: var(--paper); font-family: var(--text); font-size: clamp(1rem, 0.35vw + 0.95rem, 1.15rem); line-height: 1.65; -webkit-font-smoothing: antialiased; caret-color: var(--member); }
+::selection { background: var(--paper); color: var(--ink); }
+:focus-visible { outline: 3px solid var(--paper); outline-offset: 4px; }
+a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px; }
+.wrap { width: min(100% - 2 * var(--gutter), 76rem); margin-inline: auto; }
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: var(--gutter); top: .75rem; z-index: 20; background: var(--paper); color: var(--ink); padding: .5rem .9rem; }
+
+/* masthead */
+.masthead { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: 1.1rem .4rem; }
+.mark { font-family: var(--display); font-size: 1.05rem; letter-spacing: .02em; text-decoration: none; }
+.mark small { font-family: var(--text); font-weight: 700; font-size: .85rem; margin-inline-start: .6rem; color: #B9C2D6; letter-spacing: 0; }
+.masthead nav a { white-space: nowrap; }
+.masthead nav a { font-weight: 700; text-decoration: none; border-bottom: 2px solid transparent; padding-bottom: .15rem; }
+.masthead nav a:hover { border-bottom-color: currentColor; }
+
+/* title */
+.title { padding-block: clamp(1rem, 3vh, 2.25rem) clamp(.5rem, 2vh, 1.25rem); display: flex; justify-content: space-between; align-items: end; gap: 1.5rem; flex-wrap: wrap; }
+h1 { font-family: var(--display); font-weight: 400; font-size: clamp(2.5rem, 5.2vw, 4.6rem); line-height: 1; margin: 0; letter-spacing: -0.01em; }
+h1 .jp { display: block; font-size: clamp(1rem, 2.2vw, 1.9rem); color: #B9C2D6; margin-top: .6rem; letter-spacing: .08em; }
+.title p { margin: 0; max-width: 32ch; color: #D5DBE8; }
+
+/* shelf */
+.shelf-wrap { position: relative; }
+.shelf {
+  display: grid; grid-template-columns: repeat(10, minmax(3.4rem, 1fr)); gap: clamp(.25rem, .7vw, .55rem);
+  align-items: end; height: clamp(15rem, 36vh, 21rem); padding: 2.4rem var(--gutter) 0;
+  margin: 0 auto; width: min(100%, 76rem); overflow-x: auto; overflow-y: visible; scrollbar-width: none;
+}
+.shelf::-webkit-scrollbar { display: none; }
+.shelf-board { height: 1.1rem; background: #3A2A1C; box-shadow: 0 .35rem .8rem rgba(0,0,0,.45); width: min(100%, 76rem); margin: 0 auto; border-top: var(--border) solid #5A422C; }
+.spine {
+  --c: #D42E23; --t: #fff;
+  appearance: none; border: var(--border) solid var(--ink); border-bottom: 0; border-radius: .25rem .25rem 0 0;
+  background: var(--c); color: var(--t); cursor: pointer; font: inherit;
+  height: var(--h, 92%); width: 100%; min-width: 3.4rem; padding: .7rem 0 .55rem;
+  display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: .5rem;
+  transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s cubic-bezier(.16,1,.3,1);
+  position: relative;
+}
+.spine:hover { transform: translateY(-.55rem); }
+.spine[aria-selected="true"] { transform: translateY(-2.1rem) rotate(-2deg); box-shadow: .4rem .8rem 1.2rem rgba(0,0,0,.45); z-index: 2; }
+.spine .vol { font-family: var(--display); font-size: .95rem; line-height: 1; }
+.spine .jp.long { font-size: clamp(.95rem, 1.45vw, 1.25rem); letter-spacing: 0; }
+.spine .jp { white-space: nowrap; flex: 0 0 auto; writing-mode: vertical-rl; font-family: var(--display); font-size: clamp(1.15rem, 1.9vw, 1.6rem); line-height: 1; letter-spacing: .06em; }
+.spine .en { white-space: nowrap; overflow: hidden; min-height: 0; flex: 0 1 auto; writing-mode: vertical-rl; transform: rotate(180deg); font-weight: 700; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; }
+.spine .band { width: 100%; height: .55rem; background: var(--t); opacity: .9; }
+
+/* open volume panel */
+.volume { padding-block: clamp(2rem, 5vw, 3.5rem) clamp(3rem, 7vw, 5rem); }
+.panel {
+  position: relative; color: var(--ink); background-color: var(--paper);
+  background-image: radial-gradient(circle at 1px 1px, rgba(17,17,17,.16) 1.1px, transparent 1.4px);
+  background-size: 7px 7px;
+  border: var(--border) solid var(--ink); border-radius: .3rem;
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  overflow: hidden;
+}
+.panel-side {
+  background: var(--member); border-right: var(--border) solid var(--ink); padding: clamp(1.25rem, 3vw, 2.25rem);
+  display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; position: relative; overflow: hidden;
+  color: var(--on-member, #fff);
+  transition: background-color .5s cubic-bezier(.16,1,.3,1);
+}
+.speed { position: absolute; inset: 0; pointer-events: none; opacity: .22;
+  background: repeating-conic-gradient(from 0deg at 85% 30%, transparent 0deg 4deg, var(--on-member, #fff) 4deg 5deg); }
+.panel-side .num { font-family: var(--display); font-size: clamp(4rem, 9vw, 7rem); line-height: .85; position: relative; }
+.panel-side .jp-big { font-family: var(--display); font-size: clamp(2rem, 4.6vw, 3.6rem); line-height: 1; position: relative; letter-spacing: .04em; }
+.panel-body { padding: clamp(1.25rem, 3.5vw, 2.75rem); display: grid; align-content: start; gap: 1.1rem; }
+.panel-body h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2rem, 4.4vw, 3.4rem); line-height: 1.02; margin: 0; }
+.role { font-weight: 700; font-size: 1.05em; margin: 0; }
+.dream { margin: .4rem 0 0; padding: 1rem 1.2rem; background: var(--paper); border: var(--border) solid var(--ink); border-radius: 1.4rem; font-weight: 700; font-size: clamp(1.15rem, 1.6vw, 1.4rem); line-height: 1.45; position: relative; max-width: 40ch; }
+.dream::after { content: ""; position: absolute; left: 2.2rem; bottom: -1.05rem; width: 1.3rem; height: 1.3rem; background: var(--paper); border-right: var(--border) solid var(--ink); border-bottom: var(--border) solid var(--ink); transform: skewX(-35deg) rotate(15deg); }
+.facts { display: grid; grid-template-columns: auto 1fr; gap: .35rem 1.25rem; margin: 1.2rem 0 0; }
+.facts dt { font-weight: 700; }
+.facts dd { margin: 0; }
+.note { margin: 0; max-width: 60ch; }
+.panel-nav { display: flex; gap: .6rem; margin-top: .4rem; }
+.btn { font: inherit; font-weight: 700; cursor: pointer; background: var(--paper); color: var(--ink); border: var(--border) solid var(--ink); border-radius: .3rem; padding: .5rem 1rem; min-height: 44px; transition: background-color .2s, transform .2s cubic-bezier(.16,1,.3,1); }
+.btn:hover { box-shadow: inset 0 -0.4rem 0 var(--member); }
+.btn:active { transform: translateY(1px); }
+.panel.turn { animation: turn .5s cubic-bezier(.16,1,.3,1); }
+@keyframes turn { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+
+/* voyage index */
+.voyage { background: linear-gradient(var(--night) 0, var(--night-2) 100%); padding-block: clamp(3.5rem, 9vw, 7rem); }
+.voyage h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1; margin: 0 0 .8rem; }
+.voyage .intro { max-width: 58ch; color: #D5DBE8; margin: 0 0 2.5rem; }
+.sea { margin-top: 2.75rem; }
+.sea h3 { font-family: var(--display); font-weight: 400; font-size: clamp(1.4rem, 2.6vw, 2rem); margin: 0 0 1rem; display: flex; align-items: baseline; gap: .8rem; }
+.sea h3 span { font-family: var(--text); font-weight: 700; font-size: .9rem; color: #B9C2D6; }
+.toc { list-style: none; margin: 0; padding: 0 0 0 1.6rem; border-left: 4px solid var(--thread); }
+.toc li { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; align-items: baseline; padding: .55rem 0; border-bottom: 1px dashed rgba(246,242,231,.22); }
+.toc li::before { content: ""; position: absolute; left: calc(-1.6rem - 4px - .45rem); top: 1.05rem; width: .95rem; height: .95rem; border-radius: 50%; background: var(--night); border: 3px solid var(--thread); }
+.toc .isle { font-weight: 700; }
+.toc .joined { display: inline-flex; gap: .4rem; flex-wrap: wrap; justify-content: end; }
+.tag { font-size: .82rem; font-weight: 700; padding: .1rem .55rem; border-radius: .25rem; border: 2px solid var(--ink); color: var(--ink); background: var(--tc); white-space: nowrap; cursor: pointer; font-family: inherit; }
+.tag:hover { transform: translateY(-1px); }
+.sea.grand { --thread: #F28C28; }
+.sea.new { --thread: #F5D300; }
+
+footer { padding-block: 2.5rem 3rem; border-top: 1px solid rgba(246,242,231,.18); color: #B9C2D6; font-size: .92rem; }
+footer p { max-width: 75ch; margin: 0 0 .6rem; }
+footer strong { color: var(--paper); }
+
+@media (max-width: 800px) {
+  .shelf { grid-template-columns: repeat(10, 3.6rem); height: 17rem; padding-top: 2.4rem; }
+  .panel { grid-template-columns: 1fr; }
+  .panel-side { border-right: 0; border-bottom: var(--border) solid var(--ink); flex-direction: row; align-items: flex-end; }
+  .title p { max-width: none; }
+  .mark small { display: none; }
+  .toc li { grid-template-columns: 1fr; gap: .3rem; }
+  .toc .joined { justify-content: start; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#volume">Skip to the open volume</a>
+<header class="wrap masthead">
+  <a class="mark" href="#top" id="top">THE STRAW HAT SHELF<small>unofficial fan tribute</small></a>
+  <nav aria-label="Sections"><a href="#voyage">The voyage</a></nav>
+</header>
+
+<main>
+  <div class="wrap title">
+    <h1>Ten dreams, one ship.<span class="jp" lang="ja">麦わらの一味</span></h1>
+    <p>Every Straw Hat sailed for a reason. Pull a volume off the shelf to meet them, in the order they came aboard.</p>
+  </div>
+
+  <div class="shelf-wrap">
+    <div class="shelf" role="tablist" aria-label="Straw Hat crew, in joining order" id="shelf"></div>
+    <div class="shelf-board" aria-hidden="true"></div>
+  </div>
+
+  <section class="wrap volume" id="volume" aria-live="polite">
+    <article class="panel" id="panel" role="tabpanel">
+      <div class="panel-side">
+        <div class="speed" aria-hidden="true"></div>
+        <div class="num" id="p-num">01</div>
+        <div class="jp-big" lang="ja" id="p-jp">ルフィ</div>
+      </div>
+      <div class="panel-body">
+        <h2 id="p-name">Monkey D. Luffy</h2>
+        <p class="role" id="p-role">Captain</p>
+        <p class="dream" id="p-dream"></p>
+        <dl class="facts">
+          <dt>Came aboard</dt><dd id="p-where"></dd>
+          <dt>From</dt><dd id="p-from"></dd>
+        </dl>
+        <p class="note" id="p-note"></p>
+        <div class="panel-nav">
+          <button class="btn" id="prev" type="button">← Previous volume</button>
+          <button class="btn" id="next" type="button">Next volume →</button>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="voyage" id="voyage" aria-labelledby="voyage-h">
+    <div class="wrap">
+      <h2 id="voyage-h">The voyage, as a table of contents</h2>
+      <p class="intro">The route so far, sea by sea, through the Wano arc. A coloured tag marks where someone came aboard; tap it to open their volume.</p>
+      <div id="seas"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p><strong>Unofficial fan site.</strong> <em>One Piece</em> is created by Eiichiro Oda and published by Shueisha. This page is not affiliated with or endorsed by Eiichiro Oda, Shueisha, Toei Animation or Viz Media, and uses no official artwork, logos or text. All writing and drawings here are original.</p>
+  <p>Spoiler-gentle: nothing past the Wano Country arc. Built with the Impeccable design skill.</p>
+</footer>
+
+<script>
+const CREW = [
+  { key: "luffy", en: "Luffy", jp: "ルフィ", name: "Monkey D. Luffy", role: "Captain", c: "#D42E23", t: "#fff", h: "96%",
+    dream: "To find the One Piece and become King of the Pirates — the freest person on the sea.",
+    where: "He started the crew, setting out alone in a small boat", from: "Foosha Village, East Blue",
+    note: "A rubber-bodied captain who chooses friends before treasure and never leaves one behind." },
+  { key: "zoro", en: "Zoro", jp: "ゾロ", name: "Roronoa Zoro", role: "Swordsman", c: "#29A35A", t: "#111", h: "100%",
+    dream: "To become the greatest swordsman in the world, keeping a promise made to a childhood rival.",
+    where: "Shells Town, freed from a Marine execution post", from: "Shimotsuki Village, East Blue",
+    note: "Fights with three swords and gets lost walking in a straight line." },
+  { key: "nami", en: "Nami", jp: "ナミ", name: "Nami", role: "Navigator", c: "#F28C28", t: "#111", h: "90%",
+    dream: "To draw a map of the entire world with her own hands.",
+    where: "Orange Town — and for good at Cocoyasi Village", from: "Cocoyasi Village, East Blue",
+    note: "Reads the weather like other people read faces, and keeps the crew's accounts." },
+  { key: "usopp", en: "Usopp", jp: "ウソップ", name: "Usopp", role: "Sniper", c: "#F5D300", t: "#111", h: "94%",
+    dream: "To become a brave warrior of the sea.",
+    where: "Syrup Village, after the crew helped protect it", from: "Syrup Village, East Blue",
+    note: "A storyteller with a slingshot whose courage arrives exactly when it's needed." },
+  { key: "sanji", en: "Sanji", jp: "サンジ", name: "Sanji", role: "Cook", c: "#2C6BE0", t: "#fff", h: "98%",
+    dream: "To find the All Blue, the sea where fish from every ocean meet.",
+    where: "The Baratie, a floating restaurant", from: "Born in the North Blue",
+    note: "Fights only with his legs so his hands stay ready for cooking, and lets no one go hungry." },
+  { key: "chopper", en: "Chopper", jp: "チョッパー", name: "Tony Tony Chopper", role: "Doctor", c: "#F28FB2", t: "#111", h: "88%",
+    dream: "To become a doctor who can cure any disease.",
+    where: "Drum Island, in a winter kingdom", from: "Drum Island, Grand Line",
+    note: "A reindeer who ate a human-human fruit, and the softest heart on the ship." },
+  { key: "robin", en: "Robin", jp: "ロビン", name: "Nico Robin", role: "Archaeologist", c: "#6A3FB5", t: "#fff", h: "99%",
+    dream: "To uncover the world's true, hidden history.",
+    where: "After Alabasta, by simply deciding to stay", from: "Ohara, West Blue",
+    note: "Calm, curious, and able to bloom extra hands anywhere she can see." },
+  { key: "franky", en: "Franky", jp: "フランキー", name: "Franky", role: "Shipwright", c: "#22B8D6", t: "#111", h: "97%",
+    dream: "To build a ship that sails to the end of the world — and sail it there.",
+    where: "Water 7, the city of shipbuilders", from: "Born in the South Blue",
+    note: "A cyborg carpenter who built the crew's second ship, the Thousand Sunny." },
+  { key: "brook", en: "Brook", jp: "ブルック", name: "Brook", role: "Musician", c: "#2B2B2B", t: "#F6F2E7", h: "100%",
+    dream: "To return to Laboon, the whale who has waited for him at the Twin Capes.",
+    where: "Thriller Bark, in the Florian Triangle", from: "Born in the West Blue",
+    note: "A living skeleton with a violin, a top hat and a bottomless supply of bone jokes." },
+  { key: "jinbe", en: "Jinbe", jp: "ジンベエ", name: "Jinbe", role: "Helmsman", c: "#0E7C7B", t: "#fff", h: "95%",
+    dream: "To help Luffy's dream come true, and to see fish-men and humans live as equals.",
+    where: "Wano Country, after years of promising to come", from: "Fish-Man Island",
+    note: "A former warlord and a master of fish-man karate who steers through any current." }
+];
+const SEAS = [
+  { cls: "east", title: "East Blue", sub: "where it began", stops: [
+    ["Foosha Village", ["luffy"]], ["Shells Town", ["zoro"]], ["Orange Town", ["nami"]], ["Syrup Village", ["usopp"]],
+    ["The Baratie", ["sanji"]], ["Arlong Park", []], ["Loguetown", []] ] },
+  { cls: "grand", title: "Grand Line", sub: "Paradise", stops: [
+    ["Reverse Mountain", []], ["Whisky Peak", []], ["Little Garden", []], ["Drum Island", ["chopper"]], ["Alabasta", ["robin"]],
+    ["Jaya", []], ["Skypiea", []], ["Water 7", ["franky"]], ["Enies Lobby", []], ["Thriller Bark", ["brook"]], ["Sabaody Archipelago", []] ] },
+  { cls: "new", title: "New World", sub: "after two years apart", stops: [
+    ["Fish-Man Island", []], ["Punk Hazard", []], ["Dressrosa", []], ["Zou", []], ["Whole Cake Island", []], ["Wano Country", ["jinbe"]] ] }
+];
+
+const $ = s => document.querySelector(s);
+const shelf = $("#shelf");
+let current = 0;
+
+shelf.innerHTML = CREW.map((m, i) => `
+  <button class="spine" role="tab" id="tab-${m.key}" aria-controls="panel" aria-selected="false" tabindex="-1"
+    style="--c:${m.c};--t:${m.t};--h:${m.h}" data-i="${i}" aria-label="Volume ${i + 1}: ${m.name}, ${m.role}">
+    <span class="vol" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
+    <span class="jp${m.jp.length > 4 ? " long" : ""}" lang="ja" aria-hidden="true">${m.jp}</span>
+    <span class="en" aria-hidden="true">${m.en}</span>
+    <span class="band" aria-hidden="true"></span>
+  </button>`).join("");
+
+function open(i, focus) {
+  current = (i + CREW.length) % CREW.length;
+  const m = CREW[current];
+  document.querySelectorAll(".spine").forEach((s, j) => {
+    const on = j === current;
+    s.setAttribute("aria-selected", on); s.tabIndex = on ? 0 : -1;
+    if (on) { if (focus) s.focus(); s.scrollIntoView({ block: "nearest", inline: "nearest", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); }
+  });
+  const root = document.documentElement.style;
+  root.setProperty("--member", m.c);
+  document.querySelector(".panel-side").style.setProperty("--on-member", m.t);
+  $("#panel").setAttribute("aria-labelledby", "tab-" + m.key);
+  $("#p-num").textContent = String(current + 1).padStart(2, "0");
+  $("#p-jp").textContent = m.jp;
+  $("#p-name").textContent = m.name;
+  $("#p-role").textContent = m.role;
+  $("#p-dream").textContent = m.dream;
+  $("#p-where").textContent = m.where;
+  $("#p-from").textContent = m.from;
+  $("#p-note").textContent = m.note;
+  const p = $("#panel"); p.classList.remove("turn"); void p.offsetWidth; p.classList.add("turn");
+}
+shelf.addEventListener("click", e => { const b = e.target.closest(".spine"); if (b) open(+b.dataset.i); });
+shelf.addEventListener("keydown", e => {
+  if (e.key === "ArrowRight") { e.preventDefault(); open(current + 1, true); }
+  if (e.key === "ArrowLeft") { e.preventDefault(); open(current - 1, true); }
+  if (e.key === "Home") { e.preventDefault(); open(0, true); }
+  if (e.key === "End") { e.preventDefault(); open(CREW.length - 1, true); }
+});
+$("#prev").addEventListener("click", () => open(current - 1));
+$("#next").addEventListener("click", () => open(current + 1));
+
+$("#seas").innerHTML = SEAS.map(sea => `
+  <div class="sea ${sea.cls}">
+    <h3>${sea.title} <span>${sea.sub}</span></h3>
+    <ol class="toc">${sea.stops.map(([isle, keys]) => `
+      <li><span class="isle">${isle}</span><span class="joined">${keys.map(k => {
+        const i = CREW.findIndex(m => m.key === k), m = CREW[i];
+        return `<button class="tag" type="button" style="--tc:${m.c};color:${m.t}" data-i="${i}">${m.name.split(" ").pop()} came aboard</button>`;
+      }).join("")}</span></li>`).join("")}
+    </ol>
+  </div>`).join("");
+$("#seas").addEventListener("click", e => {
+  const t = e.target.closest(".tag"); if (!t) return;
+  open(+t.dataset.i);
+  $("#volume").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+});
+open(0);
+</script>
+</body>
+</html>
