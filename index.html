@@ -12,6 +12,7 @@
 @font-face { font-family: "Shippori Mincho B1"; src: url("fonts/ShipporiMinchoB1-ExtraBold-sub.woff2") format("woff2"); font-weight: 800; font-display: swap; }
 
 :root {
+  --seigaiha: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='28' viewBox='0 0 56 28'%3E%3Cg fill='none' stroke='%23D6E2FF' stroke-opacity='.075' stroke-width='1'%3E%3Cpath d='M0 28a28 28 0 0 1 56 0M8 28a20 20 0 0 1 40 0M16 28a12 12 0 0 1 24 0M24 28a4 4 0 0 1 8 0'/%3E%3Cpath d='M-28 14a28 28 0 0 1 56 0M-20 14a20 20 0 0 1 40 0M-12 14a12 12 0 0 1 24 0M-4 14a4 4 0 0 1 8 0M28 14a28 28 0 0 1 56 0M36 14a20 20 0 0 1 40 0M44 14a12 12 0 0 1 24 0M52 14a4 4 0 0 1 8 0'/%3E%3C/g%3E%3C/svg%3E");
   --indigo: #13224A;
   --indigo-east: #1A2D5E;
   --indigo-new: #0B1533;
@@ -53,7 +54,7 @@ a { color: inherit; text-decoration-color: var(--gold); text-underline-offset: .
 .cartouche::before { content: ""; position: absolute; inset: 6px; border: var(--hair) solid rgba(207, 174, 98, .55); pointer-events: none; }
 .corner { position: absolute; width: 18px; height: 18px; border: var(--hair) solid var(--gold); background: var(--indigo); transform: rotate(45deg); }
 .corner.tl { top: -9px; left: -9px; } .corner.tr { top: -9px; right: -9px; } .corner.bl { bottom: -9px; left: -9px; } .corner.br { bottom: -9px; right: -9px; }
-.cartouche .jp { display: block; font-weight: 800; color: var(--gold); letter-spacing: .5em; text-indent: .5em; font-size: clamp(.95rem, 1.6vw, 1.2rem); margin-bottom: .9rem; }
+.cartouche .jp { display: block; font-weight: 800; color: var(--gold); letter-spacing: .5em; text-indent: .5em; font-size: clamp(1.05rem, 1.8vw, 1.35rem); margin-top: .9rem; }
 h1 { margin: 0; font-weight: 800; font-size: clamp(2.3rem, 5.4vw, 4.1rem); line-height: 1.1; color: var(--washi); letter-spacing: .01em; text-wrap: balance; }
 .cartouche p { margin: 1rem auto 0; max-width: 38ch; color: var(--foam); }
 .legend { display: flex; justify-content: center; flex-wrap: wrap; gap: .6rem 1.8rem; margin: 1.4rem 0 0; padding: 1rem 0 0; border-top: var(--hair) solid rgba(207, 174, 98, .45); font-size: .92rem; list-style: none; }
@@ -70,7 +71,10 @@ h1 { margin: 0; font-weight: 800; font-size: clamp(2.3rem, 5.4vw, 4.1rem); line-
 .route-layer svg { width: 100%; height: 100%; overflow: visible; }
 #route { fill: none; stroke: var(--washi); stroke-width: 1.6; stroke-dasharray: 7 7; stroke-linecap: round; opacity: .9; }
 
-.sea { position: relative; padding: clamp(2.5rem, 7vw, 5rem) var(--gutter) clamp(2rem, 6vw, 4rem); }
+.sea { position: relative; padding: clamp(2.5rem, 7vw, 5rem) var(--gutter) clamp(2rem, 6vw, 4rem); background-image: var(--seigaiha); background-size: 56px 28px; }
+.redline { position: relative; z-index: 2; background: #7A2A22; border-block: var(--hair) solid var(--gold); padding: .9rem var(--gutter); text-align: center; color: var(--washi); }
+.redline strong { font-weight: 800; letter-spacing: .25em; text-transform: uppercase; font-size: .95rem; }
+.redline span { display: block; font-size: .9rem; color: #F3D9C9; }
 .sea.east { background-color: var(--indigo-east); }
 .sea.grand { background-color: var(--indigo); }
 .sea.new { background-color: var(--indigo-new); }
@@ -79,13 +83,12 @@ h1 { margin: 0; font-weight: 800; font-size: clamp(2.3rem, 5.4vw, 4.1rem); line-
 .sea-name h2 { writing-mode: vertical-rl; margin: 0; font-weight: 800; font-size: 1rem; letter-spacing: .3em; color: var(--gold); text-transform: uppercase; }
 .sea-name h2 small { font-weight: 400; letter-spacing: .1em; text-transform: none; color: var(--foam); opacity: .8; }
 
-.stops { list-style: none; margin: 0 auto; padding: 0; width: min(100%, 64rem); display: grid; gap: clamp(1.5rem, 4vw, 2.75rem); position: relative; z-index: 2; }
-.stop { display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
-.stop > .spot { grid-column: 1; justify-self: end; display: flex; align-items: center; gap: .9rem; flex-direction: row-reverse; text-align: right; padding-right: 1.6rem; }
-.stop:nth-child(even) > .spot { grid-column: 2; justify-self: start; flex-direction: row; text-align: left; padding: 0 0 0 1.6rem; }
+.stops { list-style: none; margin: 0 auto; padding: 0 0 0 clamp(4rem, 9vw, 8rem); width: min(100%, 88rem); position: relative; z-index: 2; }
+.stop { display: flex; align-items: center; gap: 1.4rem; margin: calc(var(--leg) * 1rem) 0 0 calc(var(--x) * 1%); }
+.stop:first-child { margin-top: 0; }
+.stop > .spot { display: flex; align-items: center; gap: .9rem; flex: none; }
 .isle { width: 3.2rem; height: 2.2rem; flex: none; }
 .isle path { fill: var(--washi); fill-opacity: .1; stroke: var(--washi); stroke-width: 1.25; }
-.isle .shore { fill: none; stroke-dasharray: 1.5 3; stroke-opacity: .6; }
 .name { font-weight: 800; font-size: clamp(1.05rem, 1.6vw, 1.3rem); color: var(--washi); line-height: 1.3; }
 .name small { display: block; font-weight: 400; font-size: .82rem; color: var(--foam); opacity: .78; }
 .pin { width: .7rem; height: .7rem; border-radius: 50%; background: var(--indigo-new); border: 1.6px solid var(--washi); flex: none; }
@@ -93,22 +96,21 @@ h1 { margin: 0; font-weight: 800; font-size: clamp(2.3rem, 5.4vw, 4.1rem); line-
 
 /* washi slip with hanko seal */
 .slip {
-  grid-column: 2; grid-row: 1; justify-self: start; margin-left: 1.6rem; width: min(100%, 25rem);
-  background: var(--washi); color: var(--ink); padding: 1.15rem 1.25rem 1.2rem 1.35rem; position: relative;
+  width: min(100%, 25rem); flex: 0 1 25rem;
+  background-color: var(--washi); color: var(--ink); padding: 1.15rem 1.25rem 1.2rem 1.35rem; position: relative;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .35' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .45 0 0 0 0 .3 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
   box-shadow: 0 .5rem 1.4rem rgba(0, 0, 0, .35); transform: rotate(var(--tilt, -1.2deg));
   display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start;
 }
-.stop:nth-child(even) .slip { grid-column: 1; justify-self: end; margin: 0 1.6rem 0 0; }
-.stop.joined { grid-template-rows: auto; }
-.stop.joined > .spot { grid-row: 1; }
 .seal {
   width: 3.3rem; min-height: 5rem; background: var(--vermilion); color: var(--washi); border-radius: 3px;
   display: grid; place-items: center; padding: .45rem .2rem; box-shadow: inset 0 0 0 2px var(--vermilion), inset 0 0 0 3.5px var(--washi);
   writing-mode: vertical-rl; font-weight: 800; font-size: 1.12rem; letter-spacing: .08em; line-height: 1;
   transform: rotate(3deg);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='90'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 2.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='90'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.2 2.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E"); mask-size: 100% 100%; -webkit-mask-size: 100% 100%;
 }
-.js .seal { opacity: 0; transform: scale(1.5) rotate(-8deg); }
-.js .stamped .seal { opacity: 1; transform: rotate(3deg); transition: transform .45s cubic-bezier(.2, 1.4, .3, 1), opacity .2s; }
+.js .seal { opacity: 0; transform: scale(1.18) rotate(3deg); }
+.js .stamped .seal { opacity: 1; transform: rotate(3deg); transition: transform .38s cubic-bezier(.16, 1, .3, 1), opacity .12s ease-out; }
 .slip h3 { margin: 0; font-weight: 800; font-size: 1.3rem; line-height: 1.25; }
 .slip .role { margin: .1rem 0 .55rem; font-size: .9rem; letter-spacing: .12em; text-transform: uppercase; color: #6B3B1E; }
 .slip .dream { margin: 0; font-size: 1.02rem; line-height: 1.6; }
@@ -124,16 +126,16 @@ h1 { margin: 0; font-weight: 800; font-size: clamp(2.3rem, 5.4vw, 4.1rem); line-
 
 /* ---------- small screens: route along the left edge ---------- */
 @media (max-width: 760px) {
-  .compass { position: static; transform: none; margin: 0 auto 1rem; width: 5rem; }
+  .compass { position: static; transform: none; margin: 0 auto 1rem; width: 5rem; order: -1; }
   .cartouche { display: flex; flex-direction: column; }
-  .compass { order: -1; }
-  .sea { padding-left: calc(var(--gutter) + 1.6rem); }
-  .sea-name { position: static; margin: 0 0 1.5rem -1.6rem; flex-direction: row-reverse; justify-content: flex-end; align-items: center; }
-  .sea-name .kanji { writing-mode: horizontal-tb; font-size: 2rem; opacity: .7; letter-spacing: .05em; }
+  .sea { padding-left: calc(var(--gutter) + .4rem); }
+  .sea-name { position: relative; z-index: 3; margin: 0 0 1.5rem 2.1rem; flex-direction: column; gap: .2rem; align-items: flex-start; }
+  .sea-name .kanji { writing-mode: horizontal-tb; white-space: nowrap; font-size: 2rem; opacity: .75; letter-spacing: .05em; }
   .sea-name h2 { writing-mode: horizontal-tb; font-size: .9rem; letter-spacing: .18em; }
-  .stop, .stop:nth-child(even) { grid-template-columns: 1fr; }
-  .stop > .spot, .stop:nth-child(even) > .spot { grid-column: 1; justify-self: start; flex-direction: row; text-align: left; padding: 0 0 0 1.4rem; }
-  .slip, .stop:nth-child(even) .slip { grid-column: 1; grid-row: 2; justify-self: start; margin: .9rem 0 0 1.1rem; width: calc(100% - 1.9rem); }
+  .sea-name h2 small { display: block; letter-spacing: .05em; }
+  .stops { padding-left: .6rem; }
+  .stop { flex-direction: column; align-items: flex-start; gap: .9rem; margin-left: 0; margin-top: calc(var(--leg) * .8rem); }
+  .slip { width: calc(100% - 1.6rem); margin-left: 1.3rem; flex: none; }
   .isle { width: 2.6rem; height: 1.8rem; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -159,8 +161,8 @@ h1 { margin: 0; font-weight: 800; font-size: clamp(2.3rem, 5.4vw, 4.1rem); line-
         <text x="60" y="6" font-family="Shippori Mincho B1, serif" font-size="9" fill="#EFE7D2" text-anchor="middle" font-weight="800">N</text>
       </svg>
     </div>
-    <span class="jp" lang="ja">十の夢の海図</span>
     <h1>A Chart of Ten Dreams</h1>
+    <span class="jp" lang="ja">十の夢の海図</span>
     <p>An unofficial fan's chart of the Straw Hat voyage, sea by sea through Wano. Follow the route; a seal marks each place someone came aboard.</p>
     <ul class="legend">
       <li><span class="mini-seal" aria-hidden="true"></span>where a Straw Hat came aboard</li>
@@ -188,7 +190,7 @@ h1 { margin: 0; font-weight: 800; font-size: clamp(2.3rem, 5.4vw, 4.1rem); line-
 const CREW = {
   luffy:   { jp: "ルフィ", name: "Monkey D. Luffy", role: "Captain", dream: "To find the One Piece and become King of the Pirates — the freest person on the sea.", from: "Set out alone from Foosha Village in a small boat." },
   zoro:    { jp: "ゾロ", name: "Roronoa Zoro", role: "Swordsman", dream: "To become the greatest swordsman in the world, for a promise made to a childhood rival.", from: "Freed from a Marine execution post. Hails from Shimotsuki Village." },
-  nami:    { jp: "ナミ", name: "Nami", role: "Navigator", dream: "To draw a map of the entire world with her own hands.", from: "Met in Orange Town; joined for good at Cocoyasi Village." },
+  nami:    { jp: "ナミ", name: "Nami", role: "Navigator", dream: "To draw a map of the entire world with her own hands.", from: "Met in Orange Town; joined for good once Arlong Park fell." },
   usopp:   { jp: "ウソップ", name: "Usopp", role: "Sniper", dream: "To become a brave warrior of the sea.", from: "Joined after the crew helped protect his home village." },
   sanji:   { jp: "サンジ", name: "Sanji", role: "Cook", dream: "To find the All Blue, the sea where fish from every ocean meet.", from: "Left the floating restaurant he cooked for. Born in the North Blue." },
   chopper: { jp: "チョッパー", name: "Tony Tony Chopper", role: "Doctor", dream: "To become a doctor who can cure any disease.", from: "A reindeer from a winter kingdom who ate the Human-Human Fruit." },
@@ -198,15 +200,15 @@ const CREW = {
   jinbe:   { jp: "ジンベエ", name: "Jinbe", role: "Helmsman", dream: "To help Luffy's dream come true, and to see fish-men and humans live as equals.", from: "Kept the promise he made at Fish-Man Island. A master of fish-man karate." }
 };
 const SEAS = [
-  { cls: "east", kanji: "東の海", name: "East Blue", sub: "where it began", stops: [
-    ["Foosha Village", "a windmill village", "luffy"], ["Shells Town", "a Marine base town", "zoro"], ["Orange Town", "a harbour town", "nami"],
-    ["Syrup Village", "a quiet cape village", "usopp"], ["The Baratie", "a restaurant at sea", "sanji"], ["Arlong Park", "Cocoyasi's coast"], ["Loguetown", "the last port before the Line"] ] },
-  { cls: "grand", kanji: "偉大なる航路", name: "Grand Line", sub: "the first half", stops: [
+  { cls: "east", leg: 1.2, kanji: "東の海", name: "East Blue", sub: "where it began", stops: [
+    ["Foosha Village", "a windmill village", "luffy"], ["Shells Town", "a Marine base town", "zoro"], ["Orange Town", "a harbour town"],
+    ["Syrup Village", "a quiet cape village", "usopp"], ["The Baratie", "a restaurant at sea", "sanji"], ["Arlong Park", "Cocoyasi's coast", "nami"], ["Loguetown", "the last port before the Line"] ] },
+  { cls: "grand", leg: 2, kanji: "偉大なる航路", name: "Grand Line", sub: "the first half", stops: [
     ["Reverse Mountain", "where the seas climb"], ["Whisky Peak", "a cactus island"], ["Little Garden", "a prehistoric island"], ["Drum Island", "a winter kingdom", "chopper"],
     ["Alabasta", "a desert kingdom", "robin"], ["Jaya", "a pirate port"], ["Skypiea", "an island in the clouds"], ["Water 7", "a city of shipwrights", "franky"],
     ["Enies Lobby", "a judicial island"], ["Thriller Bark", "a ghost ship island", "brook"], ["Sabaody Archipelago", "mangroves and bubbles"] ] },
-  { cls: "new", kanji: "新世界", name: "New World", sub: "after two years apart", stops: [
-    ["Fish-Man Island", "beneath the sea"], ["Punk Hazard", "half fire, half ice"], ["Dressrosa", "a kingdom of toys and flowers"], ["Zou", "an island on a great elephant"],
+  { cls: "new", leg: 2.4, kanji: "新世界", name: "New World", sub: "after two years apart", stops: [
+    ["Fish-Man Island", "beneath the Red Line"], ["Punk Hazard", "half fire, half ice"], ["Dressrosa", "a kingdom of toys and flowers"], ["Zou", "an island on a great elephant"],
     ["Whole Cake Island", "a land of sweets"], ["Wano Country", "a closed samurai land", "jinbe"] ] }
 ];
 const ISLES = [
@@ -214,16 +216,32 @@ const ISLES = [
   "M6 20 C5 11 16 4 27 8 C36 4 47 12 45 21 C43 29 31 31 22 27 C14 31 7 27 6 20 Z",
   "M3 18 C8 8 20 10 26 5 C35 2 49 13 46 22 C42 31 26 28 18 30 C9 31 1 26 3 18 Z"
 ];
+const SHAPES = {
+  "Reverse Mountain": "M2 31 L18 9 L23 14 L26 3 L31 13 L35 8 L50 31 Z",
+  "Skypiea": "M6 24 C2 24 2 16 8 16 C8 9 17 7 20 12 C23 5 34 5 35 12 C41 9 49 14 46 20 C51 22 48 28 43 27 L9 27 C7 27 6 26 6 24 Z",
+  "Zou": "M4 28 L6 16 C8 8 20 5 30 7 C40 8 47 13 48 20 L48 28 L43 28 L42 22 L36 22 L35 28 L28 28 L27 23 L18 23 L17 28 L11 28 L10 21 L9 28 Z",
+  "Wano Country": "M3 30 L10 18 L14 22 L21 8 L27 19 L31 14 L37 22 L41 16 L49 30 Z",
+  "Water 7": "M26 4 C38 4 47 11 47 19 C47 27 38 31 26 31 C14 31 5 27 5 19 C5 11 14 4 26 4 Z M26 10 L26 25 M19 17 L33 17",
+  "Fish-Man Island": "M26 3 C37 3 45 10 45 18 C45 26 37 32 26 32 C15 32 7 26 7 18 C7 10 15 3 26 3 Z M16 20 C20 14 32 14 36 20",
+  "Drum Island": "M8 31 L10 13 L16 13 L17 6 L23 6 L24 13 L29 9 L36 9 L37 15 L43 15 L45 31 Z",
+  "Alabasta": "M2 28 C10 20 16 22 22 18 C28 14 34 20 40 16 C44 14 48 18 50 22 L50 30 L2 30 Z",
+  "Thriller Bark": "M4 22 L48 22 L44 30 L9 30 Z M14 22 L14 6 L22 6 L22 22 M28 22 L28 2 L38 2 L38 22",
+  "The Baratie": "M3 24 L49 24 L45 31 L8 31 Z M14 24 L14 15 C14 9 24 7 26 7 C28 7 38 9 38 15 L38 24",
+  "Punk Hazard": "M4 30 C6 18 14 10 26 8 C38 10 46 18 48 30 Z M26 8 L26 30",
+  "Dressrosa": "M5 27 C9 15 19 9 26 10 C34 9 44 16 47 27 C38 31 14 31 5 27 Z M20 18 L20 12 L24 9 L28 12 L28 18"
+};
 const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 let n = 0;
-document.getElementById("seas").innerHTML = SEAS.map(sea => `
+document.getElementById("seas").innerHTML = SEAS.map(sea => (sea.cls === "new" ? `<div class="redline" role="separator" aria-label="The Red Line"><strong>The Red Line</strong><span>The continent that splits the Grand Line in two. Fish-Man Island lies beneath it.</span></div>` : "") + `
   <section class="sea ${sea.cls}" aria-labelledby="h-${sea.cls}">
     <div class="sea-name"><span class="kanji" lang="ja" aria-hidden="true">${sea.kanji}</span><h2 id="h-${sea.cls}">${sea.name} <small>${sea.sub}</small></h2></div>
     <ol class="stops">${sea.stops.map(([isle, desc, key]) => {
-      const m = key && CREW[key], tilt = ((n * 37) % 5 - 2) * 0.7, d = ISLES[n++ % ISLES.length];
-      return `<li class="stop${m ? " joined" : ""}">
+      const m = key && CREW[key], tilt = ((n * 37) % 5 - 2) * 0.7, d = SHAPES[isle] || ISLES[n % ISLES.length];
+      const x = m ? 6 + Math.abs(Math.sin(n * 1.7)) * 40 : 6 + Math.abs(Math.sin(n * 1.7)) * 70;
+      const leg = sea.leg + (n * 7 % 3) * 0.6; n++;
+      return `<li class="stop${m ? " joined" : ""}" style="--x:${x.toFixed(1)};--leg:${leg.toFixed(1)}">
         <div class="spot"><span class="pin" data-pin></span>
-          <svg class="isle" viewBox="0 0 52 34" aria-hidden="true"><path d="${d}"/><path class="shore" d="${d}" transform="translate(26 17) scale(1.18) translate(-26 -17)"/></svg>
+          <svg class="isle" viewBox="0 0 52 34" aria-hidden="true"><path d="${d}"/></svg>
           <span class="name">${esc(isle)}<small>${esc(desc)}</small></span></div>
         ${m ? `<article class="slip" style="--tilt:${tilt.toFixed(1)}deg" aria-label="${esc(m.name)} came aboard at ${esc(isle)}">
           <div class="seal" lang="ja" aria-hidden="true">${m.jp}</div>
