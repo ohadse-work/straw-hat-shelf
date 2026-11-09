@@ -129,7 +129,7 @@ h1 { margin: 0; font-weight: 800; font-size: clamp(2.3rem, 5.4vw, 4.1rem); line-
   .compass { position: static; transform: none; margin: 0 auto 1rem; width: 5rem; order: -1; }
   .cartouche { display: flex; flex-direction: column; }
   .sea { padding-left: calc(var(--gutter) + .4rem); }
-  .sea-name { position: relative; z-index: 3; margin: 0 0 1.5rem 2.1rem; flex-direction: column; gap: .2rem; align-items: flex-start; }
+  .sea-name { position: relative; top: auto; left: auto; z-index: 3; margin: 0 0 1.5rem 2.1rem; flex-direction: column; gap: .2rem; align-items: flex-start; }
   .sea-name .kanji { writing-mode: horizontal-tb; white-space: nowrap; font-size: 2rem; opacity: .75; letter-spacing: .05em; }
   .sea-name h2 { writing-mode: horizontal-tb; font-size: .9rem; letter-spacing: .18em; }
   .sea-name h2 small { display: block; letter-spacing: .05em; }
@@ -217,6 +217,18 @@ const ISLES = [
   "M3 18 C8 8 20 10 26 5 C35 2 49 13 46 22 C42 31 26 28 18 30 C9 31 1 26 3 18 Z"
 ];
 const SHAPES = {
+  "Foosha Village": "M4 31 L48 31 M10 31 L10 21 L18 21 L18 31 M30 31 L32 13 L36 13 L38 31 M34 14 L26 6 M34 14 L44 8 M34 14 L28 22 M34 14 L42 21",
+  "Shells Town": "M4 31 L48 31 M10 31 L10 14 L42 14 L42 31 M10 14 L10 10 L14 10 L14 14 M20 14 L20 10 L24 10 L24 14 M30 14 L30 10 L34 10 L34 14 M38 14 L38 10 L42 10 L42 14 M22 31 L22 23 L30 23 L30 31",
+  "Orange Town": "M3 31 L49 31 M7 31 L7 19 L15 12 L23 19 L23 31 M23 31 L23 22 L31 15 L39 22 L39 31 M39 31 L39 24 L44 20 L49 24",
+  "Syrup Village": "M2 31 C12 30 20 20 30 14 C38 9 44 9 50 10 L50 31 Z M38 12 L38 6 L44 6 L44 11",
+  "Arlong Park": "M4 31 L48 31 M14 31 L14 10 L22 4 L30 10 L30 31 M30 31 L30 18 L40 18 L40 31 M18 16 L26 16",
+  "Loguetown": "M3 31 L49 31 M6 31 L6 20 L14 20 L14 31 M16 31 L16 15 L24 15 L24 31 M20 15 L20 6 M26 31 L26 22 L36 22 L36 31 M38 31 L38 18 L46 18 L46 31",
+  "Whisky Peak": "M2 31 L50 31 M14 31 L14 8 C14 5 20 5 20 8 L20 31 M14 18 L9 18 L9 12 M20 15 L25 15 L25 9 M34 31 L34 14 C34 11 39 11 39 14 L39 31",
+  "Little Garden": "M3 31 C10 26 16 27 22 24 C30 20 40 24 49 31 Z M30 21 L30 10 M30 11 C25 7 22 9 20 11 M30 11 C35 6 39 8 41 11 M30 11 C30 6 33 4 35 5",
+  "Jaya": "M3 31 C12 27 22 27 30 29 C38 27 46 28 49 31 Z M18 28 C17 20 18 13 21 8 M21 8 C16 6 12 8 10 11 M21 8 C26 5 30 6 32 9 M21 8 C20 4 23 2 26 3",
+  "Enies Lobby": "M4 31 L48 31 M16 31 L16 12 L36 12 L36 31 M16 12 L26 4 L36 12 M21 31 L21 18 M26 31 L26 18 M31 31 L31 18",
+  "Sabaody Archipelago": "M3 31 L49 31 M10 31 C10 22 12 16 12 10 M10 20 C6 16 6 12 9 10 M38 31 C38 24 40 18 40 12 M30 9 a5 5 0 1 0 0.1 0 M44 6 a3 3 0 1 0 0.1 0 M22 4 a3.5 3.5 0 1 0 0.1 0",
+  "Whole Cake Island": "M6 31 L46 31 L46 23 L6 23 Z M11 23 L11 16 L41 16 L41 23 M16 16 L16 10 L36 10 L36 16 M26 10 L26 4",
   "Reverse Mountain": "M2 31 L18 9 L23 14 L26 3 L31 13 L35 8 L50 31 Z",
   "Skypiea": "M6 24 C2 24 2 16 8 16 C8 9 17 7 20 12 C23 5 34 5 35 12 C41 9 49 14 46 20 C51 22 48 28 43 27 L9 27 C7 27 6 26 6 24 Z",
   "Zou": "M4 28 L6 16 C8 8 20 5 30 7 C40 8 47 13 48 20 L48 28 L43 28 L42 22 L36 22 L35 28 L28 28 L27 23 L18 23 L17 28 L11 28 L10 21 L9 28 Z",
@@ -231,13 +243,15 @@ const SHAPES = {
   "Dressrosa": "M5 27 C9 15 19 9 26 10 C34 9 44 16 47 27 C38 31 14 31 5 27 Z M20 18 L20 12 L24 9 L28 12 L28 18"
 };
 const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
-let n = 0;
+let n = 0, prevJoined = null;
 document.getElementById("seas").innerHTML = SEAS.map(sea => (sea.cls === "new" ? `<div class="redline" role="separator" aria-label="The Red Line"><strong>The Red Line</strong><span>The continent that splits the Grand Line in two. Fish-Man Island lies beneath it.</span></div>` : "") + `
   <section class="sea ${sea.cls}" aria-labelledby="h-${sea.cls}">
     <div class="sea-name"><span class="kanji" lang="ja" aria-hidden="true">${sea.kanji}</span><h2 id="h-${sea.cls}">${sea.name} <small>${sea.sub}</small></h2></div>
     <ol class="stops">${sea.stops.map(([isle, desc, key]) => {
       const m = key && CREW[key], tilt = ((n * 37) % 5 - 2) * 0.7, d = SHAPES[isle] || ISLES[n % ISLES.length];
-      const x = m ? 6 + Math.abs(Math.sin(n * 1.7)) * 40 : 6 + Math.abs(Math.sin(n * 1.7)) * 70;
+      let x = m ? 6 + Math.abs(Math.sin(n * 1.7)) * 40 : 6 + Math.abs(Math.sin(n * 1.7)) * 70;
+      if (prevJoined !== null) x = Math.max(2, prevJoined - 14);
+      prevJoined = m ? x : null;
       const leg = sea.leg + (n * 7 % 3) * 0.6; n++;
       return `<li class="stop${m ? " joined" : ""}" style="--x:${x.toFixed(1)};--leg:${leg.toFixed(1)}">
         <div class="spot"><span class="pin" data-pin></span>
