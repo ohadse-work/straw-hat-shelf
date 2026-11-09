@@ -114,7 +114,7 @@ h1 { margin: 0; font-weight: 800; font-size: clamp(2.3rem, 5.4vw, 4.1rem); line-
 .slip h3 { margin: 0; font-weight: 800; font-size: 1.3rem; line-height: 1.25; }
 .slip .role { margin: .1rem 0 .55rem; font-size: .9rem; letter-spacing: .12em; text-transform: uppercase; color: #6B3B1E; }
 .slip .dream { margin: 0; font-size: 1.02rem; line-height: 1.6; }
-.slip .dream::before { content: "Dream — "; font-weight: 800; color: var(--vermilion); }
+.slip .dream::before { content: "Dream — "; font-weight: 800; color: #9E2419; }
 .slip .from { margin: .6rem 0 0; font-size: .86rem; color: #4A4A4A; }
 
 /* ---------- maker's note ---------- */
@@ -244,7 +244,7 @@ const SHAPES = {
 };
 const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 let n = 0, prevJoined = null;
-document.getElementById("seas").innerHTML = SEAS.map(sea => (sea.cls === "new" ? `<div class="redline" role="separator" aria-label="The Red Line"><strong>The Red Line</strong><span>The continent that splits the Grand Line in two. Fish-Man Island lies beneath it.</span></div>` : "") + `
+document.getElementById("seas").innerHTML = SEAS.map(sea => (sea.cls === "new" ? `<aside class="redline" aria-label="The Red Line"><strong>The Red Line</strong><span>The continent that splits the Grand Line in two. Fish-Man Island lies beneath it.</span></aside>` : "") + `
   <section class="sea ${sea.cls}" aria-labelledby="h-${sea.cls}">
     <div class="sea-name"><span class="kanji" lang="ja" aria-hidden="true">${sea.kanji}</span><h2 id="h-${sea.cls}">${sea.name} <small>${sea.sub}</small></h2></div>
     <ol class="stops">${sea.stops.map(([isle, desc, key]) => {
